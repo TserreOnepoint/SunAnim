@@ -1,0 +1,12 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.lottie-container {
+    width: 400px; /* Ajustez la largeur selon votre animation */
+    height: 300px; /* Ajustez la hauteur selon votre animation */
+    margin: 20px auto;
+}
