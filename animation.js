@@ -29,22 +29,28 @@ window.addEventListener('load', () => {
         const interactivity = lottie.interactivity;
 
         if (interactivity) {
-            // Définir la valeur initiale pour 'hour' (si nécessaire)
-            interactivity.inputs.set('hour', 0.5);
+            // Définir la valeur initiale pour 'hour'
+            interactivity.inputs.set('hour', 0);
 
             // Gérer le changement de sélection de mois
             const monthSelect = document.getElementById('month-select');
             monthSelect.addEventListener('change', () => {
                 const selectedMonth = getSelectedMonthValue(monthSelect.value);
                 
-                // Aller à l'état correspondant au mois, si interactivité est bien initialisée
+                // Aller à l'état correspondant au mois
                 interactivity.goToState(selectedMonth);
             });
 
             // Gérer le slider pour ajuster la valeur de 'hour'
-            const hourSlider = document.getElementById('hour-slider');
+            const hourSlider = document.getElementById('slider');
             hourSlider.addEventListener('input', () => {
-                const hourValue = parseFloat(hourSlider.value);
+                let hourValue = parseFloat(hourSlider.value);
+
+                // Assurer que la valeur reste entre 0 et 1
+                if (hourValue < 0) hourValue = 0;
+                if (hourValue > 1) hourValue = 1;
+
+                // Mettre à jour la valeur de 'hour' dans l'animation
                 interactivity.inputs.set('hour', hourValue);
             });
         } else {
